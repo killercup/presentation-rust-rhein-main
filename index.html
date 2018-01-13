@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Pascal Hertleif">
+  <meta name="dcterms.date" content="2018-01-23">
+  <title>What the heck is Oxidation anyway?</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="template/css/reveal.css">
+  <style type="text/css">
+    code{white-space: pre;}
+
+    
+    
+    .reveal a[href^="#"]:visited {
+      color: #8ea9d2;
+    }
+    
+    .reveal p, .slide {
+        line-height: 1.5 !important;
+    }
+  </style>
+  <link rel="stylesheet" href="template/css/theme/solarized.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'template/css/print/pdf.css' : 'template/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="template/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+  <h1 class="title">What the heck is Oxidation anyway?</h1>
+  <p class="subtitle">A deep dive into Rust – a talk for Facebook Developer Circle Ruhr</p>
+  <p class="author">Pascal Hertleif</p>
+  <p class="date">2018-01-23</p>
+</section>
+
+<section id="hi-im-not-jan-erik" class="slide level2">
+<h2>Hi, I’m not Jan-Erik</h2>
+<blockquote class="twitter-tweet" data-lang="en">
+<p lang="en" dir="ltr">
+This was originally <a href="https://twitter.com/badboy_?ref_src=twsrc%5Etfw"><span class="citation" data-cites="badboy_">@badboy_</span></a>'s talk and I can't promise to deliver all the things he mentioned in the abstract (I need to make room for puns)
+</p>
+— Pascal (<span class="citation" data-cites="killercup">@killercup</span>) <a href="https://twitter.com/killercup/status/951080111570333696?ref_src=twsrc%5Etfw">January 10, 2018</a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<aside class="notes">
+<p>Thanks for the kind introduction!</p>
+<p>Originally, this talk was supposed to be given by a friend of mine, but sadly Jan-Erik couldn’t make it to Bochum this lovely Tuesday.</p>
+<p>I can’t promise to do the abstract to wrote for the invite to this even justice, but I’ll do my best.</p>
+<p>Feel free to ask questions during the talk, or after. I’ll try to keep it short, and I hope we can have some discussions over a few beers afterwards.</p>
+</aside>
+</section>
+<section id="hi-im-pascal-hertleif" class="slide level2">
+<h2>Hi, I’m Pascal Hertleif</h2>
+<ul>
+<li>Web frontend dev &amp; Rust</li>
+<li>Co-organizer of <a href="http://rust.cologne/">Rust Cologne</a></li>
+<li>{<a href="https://twitter.com/killercup">twitter</a>,<a href="https://github.com/killercup">github</a>}.com/killercup</li>
+<li>Rust-centric blog: <a href="https://deterministic.space/">deterministic.space</a></li>
+</ul>
+<aside class="notes">
+<ul>
+<li>I’ve been working with Rust since early 2014</li>
+<li>If you ever happen to be in Cologne, drop by our monthly meetups!</li>
+<li>And with that out of the way, let’s get started!</li>
+</ul>
+</aside>
+</section>
+<section id="and-who-are-you" class="slide level2">
+<h2>And who are you?</h2>
+<aside class="notes">
+<p>I talked to a few of you before hand but I just want to get a feel for what your background is, so I don’t spend too much time talking about stuff you already know. Who here is familiar with</p>
+<ul>
+<li>JavaScript</li>
+<li>Ruby, PHP, Python</li>
+<li>Go, D, C++</li>
+<li>C</li>
+<li>Haskell, Ocaml, Reason</li>
+<li>Lisp, Clojure</li>
+</ul>
+</aside>
+</section>
+<section><section id="rust-is-empowering" class="title-slide slide level1"><h1>Rust is empowering</h1></section><section id="build-low-level-software" class="slide level2">
+<h2>Build low-level software</h2>
+<ul>
+<li>Compiler ensures memory safety</li>
+<li>No garbage collector</li>
+<li>C-level performance</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>No GC</li>
+<li>Embeddable in langs with runtimes</li>
+<li>Embedded systems</li>
+<li>Perfect for people who are new to systems programming</li>
+</ul>
+</aside>
+</section><section id="build-high-quality-software" class="slide level2">
+<h2>Build high-quality software</h2>
+</section><section id="section" class="slide level2">
+<h2></h2>
+</section></section>
+<section><section id="type-systems-are-great" class="title-slide slide level1"><h1>Type Systems are great</h1></section><section class="slide level2">
+
+<blockquote class="twitter-tweet" data-lang="en">
+<p lang="en" dir="ltr">
+how you know when you're on the right track <a href="https://t.co/Lp0L6CmhTv">pic.twitter.com/Lp0L6CmhTv</a>
+</p>
+— Eliza's very very very very very long display name (<span class="citation" data-cites="mycoliza">@mycoliza</span>) <a href="https://twitter.com/mycoliza/status/951982713736781824?ref_src=twsrc%5Etfw">January 13, 2018</a>
+</blockquote>
+</section><section id="section-1" class="slide level2">
+<h2></h2>
+</section></section>
+<section><section id="thanks" class="title-slide slide level1"><h1>Thanks!</h1></section><section id="any-questions" class="slide level2">
+<h2>Any questions?</h2>
+<p>Slides available at <a href="https://git.io/rust-fb-dev-circle">git.io/rust-fb-dev-circle</a></p>
+</section></section>
+    </div>
+  </div>
+
+  <script src="template/lib/js/head.min.js"></script>
+  <script src="template/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display a presentation progress bar
+        progress: true,
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'template/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'template/plugin/zoom-js/zoom.js', async: true },
+              { src: 'template/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
