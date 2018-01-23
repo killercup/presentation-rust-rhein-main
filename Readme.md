@@ -23,7 +23,6 @@ history: true
   &mdash; Pascal (@killercup)
   <a href="https://twitter.com/killercup/status/951080111570333696?ref_src=twsrc%5Etfw">January 10, 2018</a>
 </blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 ::: notes
 
@@ -75,39 +74,167 @@ Who here is familiar with
 
 # Rust is empowering
 
+## Here is what Rust gives you
+
+the ability write fast and correct programs with confidence
+
+> - Memory safety without garbage collection
+> - Concurrency without data races
+> - Zero-cost abstractions
+> - endless supply of fancy buzzwords
+
+## Rust is
+
+> - a compiled language
+> - a very strongly statically typed language
+> - production-ready
+> - an amazing open source project
+> - not just iron oxide but also a fungus
+
+## Build high-quality software
+
+- Local reasoning
+	- e.g.: Making mutations visible
+- Clear interfaces and name-spacing
+- Dare to write "risky" code – the compiler has your back
+
 ## Build low-level software
 
-- Compiler ensures memory safety
 - No garbage collector
 - C-level performance
+- Compiler ensures memory safety
 
 ::: notes
 
 - No GC
  - Embeddable in langs with runtimes
  - Embedded systems
-- Perfect for people who are new to systems programming
+- Perfect for newcomers to systems programming
 
 :::
 
-## Build high-quality software
+## Rust use cases
 
-## 
+- ripgrep
+- Mercurial (hg)
+- Firefox
 
-# Type Systems are great
+# Ownership and Borrowing
+
+::: notes
+
+GC vs manual memory management
+
+Third option: tracking resource lifetimes
+
+:::
+
+## Take ownership
+
+```rust
+struct Thing(i32);
+
+fn foo(bar: Thing) {}
+
+let x = Thing(42);
+foo(x);
+// foo(x); // ERROR: x moved into foo
+```
+
+## Borrow a reference
+
+```rust
+fn foo(bar: &Thing) {}
+
+let x = Thing(42);
+foo(&x);
+foo(&x);
+```
+
+## Borrow a mutable reference
+
+```rust
+fn foo(bar: &mut Thing) {}
+
+let mut x = Thing(42);
+
+foo(&mut x);
+foo(&mut x);
+```
+
+## Scoping
+
+```rust
+fn foo(bar: &Thing) {}
+
+let x = Thing(42);
+foo(&x);
+foo(&x);
+
+// drop(x);
+```
+
+::: notes
+
+Finalizers, destructors
+
+Close files, sockets, whatever
+
+:::
+
+
+# What does Rust feel like
 
 ---
 
+> Rust walks a razor's edge of "overly explicit and annoying" and "overly terse and confusion".
+>
+> How well it succeeds at that is subjective.
+>
+> — [Quxxy on /r/rust](https://www.reddit.com/r/rust/comments/70g0i2/a_complete_list_of_notes_on_the_rust_book_from_a/dn3afxj/?context=1)
+
+
+## Type Systems are great
+
 <blockquote class="twitter-tweet" data-lang="en">
+  <p><img src="https://pbs.twimg.com/media/DTYfMDQVQAAswA8.jpg"/></p>
   <p lang="en" dir="ltr">
     how you know when you&#39;re on the right track
-    <a href="https://t.co/Lp0L6CmhTv">pic.twitter.com/Lp0L6CmhTv</a>
   </p>
-  &mdash; Eliza&#39;s very very very very very long display name (@mycoliza)
+  &mdash; @mycoliza
   <a href="https://twitter.com/mycoliza/status/951982713736781824?ref_src=twsrc%5Etfw">January 13, 2018</a>
 </blockquote>
 
-## 
+## Examples
+
+```rust
+# extern crate reqwest;
+# extern crate serde;
+# #[macro_use] extern crate serde_derive;
+
+#[derive(Deserialize)]
+struct Commit { commit_message: String }
+
+# fn fetch() -> Result<(), Box<Error>> {
+
+let url = "http://whatthecommit.com/index.json";
+let msg: Commit = reqwest::get(url)?.json()?;
+println!("{}", msg);
+
+# Ok(())
+# }
+# fn main() { fetch().expect("Oops!"); }
+```
+
+# Community
+
+---
+
+A lot of smart people work on Rust
+
+...
+
+And they want you to feel smart, too!
 
 # Thanks!
 
