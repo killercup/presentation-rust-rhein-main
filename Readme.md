@@ -194,6 +194,18 @@ Close files, sockets, whatever
 > — [Quxxy on /r/rust](https://www.reddit.com/r/rust/comments/70g0i2/a_complete_list_of_notes_on_the_rust_book_from_a/dn3afxj/?context=1)
 
 
+## Example
+
+```rust
+#[derive(Deserialize)]
+struct Commit { commit_message: String }
+
+let url = "http://whatthecommit.com/index.json";
+let msg: Commit = reqwest::get(url)?.json()?;
+println!("{}", msg);
+```
+
+
 ## Type Systems are great
 
 <blockquote class="twitter-tweet" data-lang="en">
@@ -205,34 +217,11 @@ Close files, sockets, whatever
   <a href="https://twitter.com/mycoliza/status/951982713736781824?ref_src=twsrc%5Etfw">January 13, 2018</a>
 </blockquote>
 
-## Examples
-
-```rust
-# extern crate reqwest;
-# extern crate serde;
-# #[macro_use] extern crate serde_derive;
-
-#[derive(Deserialize)]
-struct Commit { commit_message: String }
-
-# fn fetch() -> Result<(), Box<Error>> {
-
-let url = "http://whatthecommit.com/index.json";
-let msg: Commit = reqwest::get(url)?.json()?;
-println!("{}", msg);
-
-# Ok(())
-# }
-# fn main() { fetch().expect("Oops!"); }
-```
-
 # Community
 
 ---
 
 A lot of smart people work on Rust
-
-...
 
 And they want you to feel smart, too!
 
@@ -241,5 +230,9 @@ And they want you to feel smart, too!
 - - -
 
 ## Any questions?
+
+Visit [rust-lang.org](https://www.rust-lang.org)
+
+I am Pascal – [\@killercup][twitter]
 
 Slides available at [git.io/rust-fb-dev-circle](https://git.io/rust-fb-dev-circle)

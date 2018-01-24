@@ -85,13 +85,6 @@
     .reveal p, .slide {
         line-height: 1.5 !important;
     }
-    
-    .twitter-tweet-rendered {
-        margin-left: auto;
-        margin-right: auto;
-        transform: scale(1.5);
-        transform-origin: top;
-    }
   </style>
   <link rel="stylesheet" href="template/css/theme/solarized.css" id="theme">
   <!-- Printing and PDF exports -->
@@ -258,6 +251,14 @@ This was originally <a href="https://twitter.com/badboy_?ref_src=twsrc%5Etfw"><s
 <p>How well it succeeds at that is subjective.</p>
 <p>— <a href="https://www.reddit.com/r/rust/comments/70g0i2/a_complete_list_of_notes_on_the_rust_book_from_a/dn3afxj/?context=1">Quxxy on /r/rust</a></p>
 </blockquote>
+</section><section id="example" class="slide level2">
+<h2>Example</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="at">#[</span>derive<span class="at">(</span>Deserialize<span class="at">)]</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">struct</span> Commit <span class="op">{</span> commit_message: <span class="dt">String</span> <span class="op">}</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw">let</span> url = <span class="st">&quot;http://whatthecommit.com/index.json&quot;</span>;</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="kw">let</span> msg: Commit = reqwest::get(url)?.json()?;</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span>, msg);</a></code></pre></div>
 </section><section id="type-systems-are-great" class="slide level2">
 <h2>Type Systems are great</h2>
 <blockquote class="twitter-tweet" data-lang="en">
@@ -269,33 +270,16 @@ how you know when you're on the right track
 </p>
 — <span class="citation" data-cites="mycoliza">@mycoliza</span> <a href="https://twitter.com/mycoliza/status/951982713736781824?ref_src=twsrc%5Etfw">January 13, 2018</a>
 </blockquote>
-</section><section id="examples" class="slide level2">
-<h2>Examples</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb5-1" data-line-number="1"># <span class="kw">extern</span> <span class="kw">crate</span> reqwest;</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"># <span class="kw">extern</span> <span class="kw">crate</span> serde;</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"># <span class="at">#[</span>macro_use<span class="at">]</span> <span class="kw">extern</span> <span class="kw">crate</span> serde_derive;</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="at">#[</span>derive<span class="at">(</span>Deserialize<span class="at">)]</span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="kw">struct</span> Commit <span class="op">{</span> commit_message: <span class="dt">String</span> <span class="op">}</span></a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"># <span class="kw">fn</span> fetch() -&gt; <span class="dt">Result</span>&lt;(), <span class="dt">Box</span>&lt;Error&gt;&gt; <span class="op">{</span></a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="kw">let</span> url = <span class="st">&quot;http://whatthecommit.com/index.json&quot;</span>;</a>
-<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="kw">let</span> msg: Commit = reqwest::get(url)?.json()?;</a>
-<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span>, msg);</a>
-<a class="sourceLine" id="cb5-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb5-14" data-line-number="14"># <span class="cn">Ok</span>(())</a>
-<a class="sourceLine" id="cb5-15" data-line-number="15"># <span class="op">}</span></a>
-<a class="sourceLine" id="cb5-16" data-line-number="16"># <span class="kw">fn</span> main() <span class="op">{</span> fetch().expect(<span class="st">&quot;Oops!&quot;</span>); <span class="op">}</span></a></code></pre></div>
 </section></section>
 <section><section id="community" class="title-slide slide level1"><h1>Community</h1></section><section class="slide level2">
 
 <p>A lot of smart people work on Rust</p>
-<p>…</p>
 <p>And they want you to feel smart, too!</p>
 </section></section>
 <section><section id="thanks" class="title-slide slide level1"><h1>Thanks!</h1></section><section id="any-questions" class="slide level2">
 <h2>Any questions?</h2>
+<p>Visit <a href="https://www.rust-lang.org">rust-lang.org</a></p>
+<p>I am Pascal – <a href="https://twitter.com/killercup">@killercup</a></p>
 <p>Slides available at <a href="https://git.io/rust-fb-dev-circle">git.io/rust-fb-dev-circle</a></p>
 </section></section>
     </div>
