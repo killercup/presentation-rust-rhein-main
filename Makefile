@@ -1,8 +1,10 @@
+INPUT ?= Rust-in-5-min
+
 slides:
-	pandoc Readme.md \
+	pandoc $(INPUT).md \
 	--to revealjs \
 	--template template/index.html \
-	--output index.html \
+	--output $(INPUT).html \
 	-V revealjs-url=template \
 	-V theme=solarized \
 	-V progress=true \

@@ -1,8 +1,8 @@
 ---
-title: "What the heck is Oxidation anyway?"
-subtitle: "A deep dive into Rust -- a talk for Facebook Developer Circle Ruhr"
+title: "Rust in 5 minutes"
+subtitle: "(might take longer)"
 author: Pascal Hertleif
-date: 2018-01-23
+date: 2018-08-10
 categories:
 - rust
 - presentation
@@ -11,31 +11,6 @@ progress: true
 slideNumber: true
 history: true
 ---
-## Hi, I'm not Jan-Erik
-
-<blockquote class="twitter-tweet" data-lang="en">
-  <p lang="en" dir="ltr">
-    This was originally
-    <a href="https://twitter.com/badboy_?ref_src=twsrc%5Etfw">@badboy_</a>&#39;s
-    talk and I can&#39;t promise to deliver all the things he mentioned in the abstract
-    (I need to make room for puns)
-  </p>
-  &mdash; Pascal (@killercup)
-  <a href="https://twitter.com/killercup/status/951080111570333696?ref_src=twsrc%5Etfw">January 10, 2018</a>
-</blockquote>
-
-::: notes
-
-Thanks for the kind introduction!
-
-Originally, this talk was supposed to be given by a friend of mine, but sadly Jan-Erik couldn't make it to Bochum this lovely Tuesday.
-
-I can't promise to do the abstract to wrote for the invite to this even justice, but I'll do my best.
-
-Feel free to ask questions during the talk, or after. I'll try to keep it short, and I hope we can have some discussions over a few beers afterwards.
-
-:::
-
 ## Hi, I'm Pascal Hertleif
 
 - Web frontend dev & Rust
@@ -52,6 +27,7 @@ Feel free to ask questions during the talk, or after. I'll try to keep it short,
 
 - I've been working with Rust since early 2014
 - If you ever happen to be in Cologne, drop by our monthly meetups!
+- I have stickers!
 - And with that out of the way, let's get started!
 
 :::
@@ -231,8 +207,8 @@ And they want you to feel smart, too!
 
 ## Any questions?
 
-Visit [rust-lang.org](https://www.rust-lang.org)
+I am Pascal
 
-I am Pascal – [\@killercup][twitter]
+{[twitter],[github]}.com/killercup
 
-Slides available at [git.io/rust-fb-dev-circle](https://git.io/rust-fb-dev-circle)
+Slides will be available on Github
